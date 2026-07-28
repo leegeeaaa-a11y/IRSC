@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>IRISCODE Banner</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,
+body{
+
+width:100%;
+height:100%;
+
+background:#000;
+
+overflow:hidden;
+
+font-family:Arial,sans-serif;
+
+}
+
+.banner{
+
+position:relative;
+
+width:100vw;
+height:100vh;
+
+overflow:hidden;
+
+background:#000;
+
+}
+
+.track{
+
+display:flex;
+
+width:300%;
+height:100%;
+
+transition:
+transform .7s ease;
+
+}
+
+.slide{
+
+position:relative;
+
+width:100vw;
+height:100vh;
+
+flex-shrink:0;
+
+overflow:hidden;
+
+cursor:pointer;
+
+}
+
+.slide img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+transition:
+transform 8s linear;
+
+}
+
+.slide.active img{
+
+transform:scale(1.05);
+
+}
+
+/* 어두운 오버레이 */
+
+.overlay{
+
+position:absolute;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+rgba(0,0,0,.15),
+
+rgba(0,0,0,.35),
+
+rgba(0,0,0,.6)
+
+);
+
+pointer-events:none;
+
+}
+
+/* 보라빛 */
+
+.glow{
+
+position:absolute;
+
+left:50%;
+top:-200px;
+
+transform:translateX(-50%);
+
+width:900px;
+height:900px;
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(125,70,255,.35),
+
+transparent 70%
+
+);
+
+filter:blur(30px);
+
+animation:
+
+glowMove 8s ease-in-out infinite alternate;
+
+pointer-events:none;
+
+}
+
+@keyframes glowMove{
+
+from{
+
+transform:
+translateX(-50%)
+translateY(0);
+
+}
+
+to{
+
+transform:
+translateX(-50%)
+translateY(80px);
+
+}
+
+}
+
+/* 별 */
+
+.star{
+
+position:absolute;
+
+width:2px;
+height:2px;
+
+background:#fff;
+
+border-radius:50%;
+
+opacity:.5;
+
+animation:
+
+twinkle 2.5s infinite;
+
+}
+
+@keyframes twinkle{
+
+0%{
+opacity:.2;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+opacity:.2;
+}
+
+/* 계속 */
+}
+
+.arrow{
+
+position:absolute;
+
+top:50%;
+
+transform:translateY(-50%);
+
+width:60px;
+
+height:80px;
+
+border:none;
+
+background:rgba(0,0,0,.35);
+
+backdrop-filter:blur(8px);
+
+color:#fff;
+
+font-size:42px;
+
+cursor:pointer;
+
+transition:.25s;
+
+z-index:100;
+
+}
+
+.arrow:hover{
+
+background:rgba(130,80,255,.45);
+
+box-shadow:
+
+0 0 20px rgba(140,90,255,.6);
+
+}
+
+.left{
+
+left:25px;
+
+}
+
+.right{
+
+right:25px;
+
+}
+
+.dots{
+
+position:absolute;
+
+bottom:28px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+display:flex;
+
+gap:12px;
+
+z-index:100;
+
+}
+
+.dot{
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.35);
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.dot.active{
+
+background:#9b6cff;
+
+box-shadow:
+
+0 0 12px #9b6cff;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="banner">
+
+<div class="glow"></div>
+
+<div class="star" style="left:10%;top:20%;animation-delay:.5s;"></div>
+<div class="star" style="left:22%;top:70%;animation-delay:1.2s;"></div>
+<div class="star" style="left:35%;top:32%;animation-delay:2.2s;"></div>
+<div class="star" style="left:52%;top:15%;animation-delay:.8s;"></div>
+<div class="star" style="left:66%;top:80%;animation-delay:1.5s;"></div>
+<div class="star" style="left:80%;top:42%;animation-delay:2.7s;"></div>
+<div class="star" style="left:92%;top:25%;animation-delay:1.8s;"></div>
+
+<div class="track" id="track">
+
+<div class="slide active"
+
+data-link="https://sites.google.com/view/irsc-official/games/pyr">
+
+<img src="https://raw.githubusercontent.com/leegeeaaa-a11y/WEB/main/PYRBANNERbetaver.png">
+
+<div class="overlay"></div>
+
+</div>
+
+<div class="slide"
+
+data-link="https://sites.google.com/view/irsc-official/games/ld">
+
+<img src="https://raw.githubusercontent.com/leegeeaaa-a11y/WEB/main/LDDEVBANNER.png">
+
+<div class="overlay"></div>
+
+</div>
+
+<div class="slide"
+
+data-link="https://sites.google.com/view/irsc-official/games/sq">
+
+<img src="https://raw.githubusercontent.com/leegeeaaa-a11y/WEB/main/SQpross.png">
+
+<div class="overlay"></div>
+
+</div>
+
+</div>
+
+<button class="arrow left" onclick="move(-1)">‹</button>
+
+<button class="arrow right" onclick="move(1)">›</button>
+
+<div class="dots">
+
+<div class="dot active"></div>
+
+<div class="dot"></div>
+
+<div class="dot"></div>
+
+</div>
+
+<script>
+
+const track=document.getElementById("track");
+
+const slides=document.querySelectorAll(".slide");
+
+const dots=document.querySelectorAll(".dot");
+
+let index=0;
+let timer;
+
+function update(){
+
+track.style.transform=
+`translateX(-${index*100}vw)`;
+
+slides.forEach(s=>s.classList.remove("active"));
+
+slides[index].classList.add("active");
+
+dots.forEach(d=>d.classList.remove("active"));
+
+dots[index].classList.add("active");
+
+}
+
+/* 계속 */
+function move(dir){
+
+    index += dir;
+
+    if(index < 0){
+        index = slides.length - 1;
+    }
+
+    if(index >= slides.length){
+        index = 0;
+    }
+
+    update();
+
+}
+
+dots.forEach((dot,i)=>{
+
+    dot.addEventListener("click",()=>{
+
+        index=i;
+
+        update();
+
+        resetAuto();
+
+    });
+
+});
+
+
+/* 배너 클릭 이동 */
+
+slides.forEach(slide=>{
+
+    slide.addEventListener("click",()=>{
+
+        const link = slide.dataset.link;
+
+        if(link){
+
+            window.location.href = link;
+
+        }
+
+    });
+
+});
+
+
+function auto(){
+
+    timer=setInterval(()=>{
+
+        move(1);
+
+    },5000);
+
+}
+
+function resetAuto(){
+
+    clearInterval(timer);
+
+    auto();
+
+}
+
+
+/* 마우스 올리면 자동 슬라이드 일시정지 */
+
+document.querySelector(".banner").addEventListener("mouseenter",()=>{
+
+    clearInterval(timer);
+
+});
+
+document.querySelector(".banner").addEventListener("mouseleave",()=>{
+
+    auto();
+
+});
+
+
+update();
+
+auto();
+
+</script>
+
+</body>
+
+</html>
