@@ -253,3 +253,20 @@ footer p{
     background:#9d7cff;
 
 }
+/* ===========================
+   Fade Animation
+=========================== */
+
+.hidden{
+
+    opacity:0;
+
+    transition:1s;
+
+}
+
+.show{
+
+    opacity:1;
+
+}
